@@ -12,7 +12,6 @@ function Square(props) {
   }
   // If the winning move has been found
   if (props.winningLine) {
-    console.log(props)
     return(
       <button className="square" 
         onClick={props.onClick} 
@@ -87,7 +86,7 @@ class Game extends React.Component {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice();
-      if (calculateWinner(squares) || squares[i]) {
+      if (calculateWinner(squares) || squares[i] || this.state.stepNumber >= 9) {
           return;
       }
       squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -126,10 +125,17 @@ class Game extends React.Component {
     });
 
     let status;
+    // If a winner has been found
     if (winner) {
         status = 'Winner: ' + winner[0];
         winningLine = winner[1];
-    } else {
+    } 
+    // If it's a draw
+    else if (this.state.stepNumber >= 9){
+        status = 'Draw!';
+    }
+    // Otherwise, play on!
+    else {
         status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
@@ -174,7 +180,6 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        console.log(lines[i])
       return [squares[a], lines[i]];
     }
   }
