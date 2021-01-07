@@ -10,6 +10,9 @@ This project follows the [Tic Tac Toe Tutorial](https://reactjs.org/tutorial/tut
 
 1. Create an empty GitHub repository first (ex. ktmeaton/react-tutorial).
 1. Open with Gitpod (comes with node.js ).
+
+### Create Basic App
+
 1. Create an app within the GitHub repository (app will share name).
 
    ```
@@ -34,6 +37,29 @@ This project follows the [Tic Tac Toe Tutorial](https://reactjs.org/tutorial/tut
    ```
 
    This opens a browser preview on port:3000.
+
+### Deploy Basic App
+
+1. Install gh-pages package.
+
+npm install gh-pages --save-dev
+
+1. Add deploy properties to ```package.json```:
+
+   ```
+   //...
+   "homepage": "http://ktmeaton.github.io/react-tic-tac-toe",
+   //...
+   "scripts": {
+     //...
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -d build"
+   }
+   ```
+
+1. Generate a production build of your app, and deploy it to GitHub Pages. 
+
+   The site is now available [here][(https://ktmeaton.github.io/react-tic-tac-toe/).
 
 1. Remove all of the demo content in src:
 
