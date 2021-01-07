@@ -2,6 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const numBoardRows = 3;
+const numBoardColumns = 3;
+
+var boardRows = [];
+var boardColumns = [];
+
+for (var i = 0; i < numBoardRows; i++) {
+    boardRows.push(<div className="board-row" />);
+}
+
+console.log(boardRows)
+
 function Square(props) {
 
   const prevMoveStyle = {
@@ -60,7 +72,7 @@ class Board extends React.Component {
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
-        </div>
+        </div>      
       </div>
     );
   }
